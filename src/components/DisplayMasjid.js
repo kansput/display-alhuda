@@ -334,8 +334,8 @@ export default function DisplayMasjid({ initialData }) {
       {/* MAIN DISPLAY - COUNTDOWN & KAJIAN */}
       <div className="grid grid-cols-2 gap-3 mb-2 flex-1">
         {/* COUNTDOWN KIRI */}
-        <div className="flex flex-col justify-center items-center bg-gradient-to-br from-teal-600 to-teal-700 rounded-xl p-4 shadow-lg">
-          <p className="text-sm uppercase tracking-widest text-teal-100 font-bold mb-2">
+        <div className="flex flex-col justify-center items-center bg-white rounded-xl p-4 shadow-xl border-4 border-teal-600">
+          <p className="text-base uppercase tracking-widest text-teal-700 font-black mb-2">
             {countdown?.isAdzan
               ? `WAKTU ADZAN ${currentPrayer}`
               : countdown?.isIqamah
@@ -347,30 +347,30 @@ export default function DisplayMasjid({ initialData }) {
               {!countdown.isIqamah && !countdown.isAdzan && (
                 <>
                   <div className="text-center">
-                    <p className="text-4xl font-black text-white tabular-nums leading-none">
+                    <p className="text-5xl font-black text-slate-900 tabular-nums leading-none">
                       {countdown.hours.toString().padStart(2, "0")}
                     </p>
-                    <p className="text-[9px] font-bold text-teal-100 mt-1 tracking-wider">
+                    <p className="text-xs font-bold text-slate-600 mt-1 tracking-wider">
                       JAM
                     </p>
                   </div>
-                  <p className="text-3xl font-black text-teal-300">:</p>
+                  <p className="text-4xl font-black text-teal-600">:</p>
                 </>
               )}
               <div className="text-center">
-                <p className="text-4xl font-black text-white tabular-nums leading-none">
+                <p className="text-5xl font-black text-slate-900 tabular-nums leading-none">
                   {countdown.minutes.toString().padStart(2, "0")}
                 </p>
-                <p className="text-[9px] font-bold text-teal-100 mt-1 tracking-wider">
+                <p className="text-xs font-bold text-slate-600 mt-1 tracking-wider">
                   MENIT
                 </p>
               </div>
-              <p className="text-3xl font-black text-teal-300">:</p>
+              <p className="text-4xl font-black text-teal-600">:</p>
               <div className="text-center">
-                <p className="text-4xl font-black text-white tabular-nums leading-none">
+                <p className="text-5xl font-black text-slate-900 tabular-nums leading-none">
                   {countdown.seconds.toString().padStart(2, "0")}
                 </p>
-                <p className="text-[9px] font-bold text-teal-100 mt-1 tracking-wider">
+                <p className="text-xs font-bold text-slate-600 mt-1 tracking-wider">
                   DETIK
                 </p>
               </div>
@@ -439,26 +439,26 @@ export default function DisplayMasjid({ initialData }) {
             return (
               <div className="pt-2.5 border-t-2 border-slate-200 space-y-2.5">
                 {/* CURRENT IMAM - HIGHLIGHTED */}
-                <div className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg p-2.5 shadow-md">
-                  <h3 className="text-xs font-black text-white tracking-wide uppercase mb-1.5 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                <div className="bg-white rounded-lg p-2.5 shadow-lg border-4 border-teal-600">
+                  <h3 className="text-xs font-black text-teal-700 tracking-wide uppercase mb-1.5 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-teal-600 rounded-full animate-pulse"></span>
                     IMAM {currentPrayer} SEKARANG
                   </h3>
                   {isCurrentJumat ? (
                     <div className="space-y-1">
                       <div>
-                        <p className="text-[8px] text-teal-100 font-semibold uppercase tracking-wide mb-0.5">
+                        <p className="text-[8px] text-slate-500 font-semibold uppercase tracking-wide mb-0.5">
                           Khatib
                         </p>
-                        <p className="text-sm font-bold text-white">
+                        <p className="text-sm font-bold text-slate-900">
                           {currentPrayerData?.data?.khatib || "-"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[8px] text-teal-100 font-semibold uppercase tracking-wide mb-0.5">
+                        <p className="text-[8px] text-slate-500 font-semibold uppercase tracking-wide mb-0.5">
                           Imam
                         </p>
-                        <p className="text-sm font-bold text-white">
+                        <p className="text-sm font-bold text-slate-900">
                           {currentPrayerData?.data?.imam || "-"}
                         </p>
                       </div>
@@ -466,24 +466,24 @@ export default function DisplayMasjid({ initialData }) {
                   ) : currentPrayer !== "SYURUQ" ? (
                     <div className="space-y-1">
                       <div>
-                        <p className="text-[8px] text-teal-100 font-semibold uppercase tracking-wide mb-0.5">
+                        <p className="text-[8px] text-slate-500 font-semibold uppercase tracking-wide mb-0.5">
                           Imam Utama
                         </p>
-                        <p className="text-sm font-bold text-white">
+                        <p className="text-lg font-black text-slate-900">
                           {currentPrayerData?.data?.utama || "-"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-[8px] text-teal-100 font-semibold uppercase tracking-wide mb-0.5">
+                        <p className="text-[8px] text-slate-500 font-semibold uppercase tracking-wide mb-0.5">
                           Imam Badal
                         </p>
-                        <p className="text-xs font-medium text-teal-50">
+                        <p className="text-sm font-bold text-slate-700">
                           {currentPrayerData?.data?.badal || "-"}
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <p className="text-[10px] font-medium text-teal-100 italic">
+                    <p className="text-[10px] font-medium text-slate-600 italic">
                       Waktu terbit matahari
                     </p>
                   )}
