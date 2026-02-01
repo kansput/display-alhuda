@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* =========================
+   THEME TOKENS (IDENTITY)
+   ========================= */
+@theme {
+  /* === PRIMARY (Hijau — inti identitas) === */
+  --color-primary-700: #006837;   /* legacy hijau tua (fallback institusi) */
+  --color-primary-600: #01A54D;   /* hijau utama */
+  --color-primary-500: #10816F;   /* teal hijau */
+
+  /* === SECONDARY (Biru — otoritas & stabilitas) === */
+  --color-secondary-800: #2C368B;
+  --color-secondary-700: #2B398E;
+  --color-secondary-600: #1D5F82;
+
+  /* === SUPPORTING (Hijau muda — growth) === */
+  --color-support-500: #7CB947;
+  --color-support-400: #BCD03B;
+
+  /* === ACCENT (Kuning — highlight & CTA) === */
+  --color-accent-500: #FAED21;
+
+  /* === NEUTRAL === */
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #6b7280;
+
+  /* === TYPOGRAPHY === */
+  --font-logotype: var(--font-el-messiri), serif;
+  --font-sans: var(--font-inter), sans-serif;
+}
+
+/* =========================
+   BASE STYLES
+   ========================= */
+@layer base {
+  * {
+    cursor: none !important;
+    pointer-events: none !important;
+  }
+
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)]
+           font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-[family-name:var(--font-logotype)] font-semibold text-[var(--color-secondary-800)];
+  }
+
+  a {
+    @apply text-[var(--color-primary-600)] hover:underline;
+  }
+}
+
+/* =========================
+   UTILITIES
+   ========================= */
+.font-logotype {
+  font-family: var(--font-logotype);
+}
+
+.text-primary {
+  color: var(--color-primary-600);
+}
+
+.text-secondary {
+  color: var(--color-secondary-800);
+}
+
+.bg-primary {
+  background-color: var(--color-primary-600);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary-800);
+}
+
+.bg-accent {
+  background-color: var(--color-accent-500);
+  color: #111;
+}
+
+/* =========================
+   ANIMATION (ADZAN / ALERT)
+   ========================= */
+@keyframes adzan-blink {
+  0%, 100% {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+  50% {
+    background-color: var(--color-primary-600);
+    color: #ffffff;
+  }
+}
+
+.animate-adzan {
+  animation: adzan-blink 1.5s ease-in-out infinite;
+}
+
+/* =========================
+   ANIMATION (ARROW SLIDE)
+   ========================= */
+@keyframes arrow-slide {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-arrow-slide {
+  animation: arrow-slide 2s ease-in-out infinite;
+}
+
+/* =========================
+   ANIMATION (RUNNING TEXT)
+   ========================= */
+/* Update di globals.css */
+@keyframes running-text {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Diubah dari -33.333% ke -50% karena kita pakai 2 repetisi */
+    transform: translateX(-50%);
+  }
+}
+
+.animate-running-text {
+  /* Kurangi durasi jika 300s terasa terlalu lambat untuk 2 repetisi */
+  animation: running-text 120s linear infinite; 
+}
