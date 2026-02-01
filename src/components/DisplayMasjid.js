@@ -78,14 +78,13 @@ export default function DisplayMasjid({ initialData }) {
 
   const getCurrentPrayer = () => {
     const currentTime = formatJamMenit(now);
-    const prayerTimes = listShalatTemp.filter((p) => p.nama !== "SYURUQ"); // skip syuruq
+    const prayerTimes = listShalatTemp.filter((p) => p.nama !== "SYURUQ");
 
     for (let i = 0; i < prayerTimes.length; i++) {
       const current = prayerTimes[i];
       const next = prayerTimes[i + 1];
 
       if (currentTime >= current.waktu && (!next || currentTime < next.waktu)) {
-        // Kalo current = ISYA dan gak ada next, berarti next = SUBUH besok
         return {
           current: current.nama,
           next: next?.nama || "SUBUH",
@@ -93,25 +92,22 @@ export default function DisplayMasjid({ initialData }) {
       }
     }
 
-    // Fallback: kalo waktu sebelum Subuh, berarti masih periode Isya kemarin
-    return { current: "ISYA", next: "SUBUH" };
+    // Fallback: waktu sebelum Subuh (00:00-04:xx) = belum ada waktu sholat, next = Subuh hari ini
+    return { current: null, next: "SUBUH" };
   };
 
   const { current: currentPrayer, next: nextPrayer } = getCurrentPrayer();
 
   // Sekarang baru define listShalat FINAL dengan logic besok
+  // Cuma pakai jadwal besok kalau: current=ISYA DAN jam >= 19:00 (setelah Isya)
+  const useJadwalBesok = currentPrayer === "ISYA" && now.getHours() >= 19;
+  
   const listShalat = [
     {
       nama: "SUBUH",
-      waktu:
-        currentPrayer === "ISYA" && nextPrayer === "SUBUH" && jadwalBesok
-          ? jadwalBesok.subuh
-          : jadwal.subuh,
-      data:
-        currentPrayer === "ISYA" && nextPrayer === "SUBUH"
-          ? tomorrowSchedule.subuh
-          : daySchedule.subuh,
-      isTomorrow: currentPrayer === "ISYA" && nextPrayer === "SUBUH",
+      waktu: useJadwalBesok ? jadwalBesok.subuh : jadwal.subuh,
+      data: useJadwalBesok ? tomorrowSchedule.subuh : daySchedule.subuh,
+      isTomorrow: useJadwalBesok,
     },
     { nama: "SYURUQ", waktu: jadwal.syuruq },
     {
@@ -157,7 +153,8 @@ export default function DisplayMasjid({ initialData }) {
 
 
     let nextTime;
-    if (nextPrayer === "SUBUH" && currentPrayer === "ISYA" && jadwalBesok) {
+    // Cuma pakai jadwalBesok kalau: current=ISYA DAN jam >= 19:00
+    if (nextPrayer === "SUBUH" && currentPrayer === "ISYA" && now.getHours() >= 19 && jadwalBesok) {
       nextTime = jadwalBesok.subuh;
     } else {
       nextTime = listShalat.find((s) => s.nama === nextPrayer)?.waktu;
@@ -169,7 +166,8 @@ export default function DisplayMasjid({ initialData }) {
     const nextDate = new Date(now);
     nextDate.setHours(h, m, 0, 0);
 
-    if (nextPrayer === "SUBUH" && now.getHours() >= 18) {
+    // Hanya set hari besok kalau next=SUBUH DAN jam >= 19:00 (setelah Isya)
+    if (nextPrayer === "SUBUH" && now.getHours() >= 19) {
       nextDate.setDate(nextDate.getDate() + 1);
     }
 
@@ -416,7 +414,7 @@ export default function DisplayMasjid({ initialData }) {
                   </div>
                   <div>
                     <p className="text-[9px] text-slate-600 font-bold uppercase tracking-wide mb-0.5">
-                      Koordinator / Pemateri
+                      Koordinator 
                     </p>
                     <p className="text-sm font-bold text-teal-700">
                       {todayKajian.Koordinator}
