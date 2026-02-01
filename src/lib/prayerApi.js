@@ -3,8 +3,11 @@ export async function getJadwalMuhammadiyah() {
     const lat = -6.2000;
     const lng = 106.8667;
     
-    // Get today's date
-    const today = new Date();
+    // Get today's date in WIB timezone (UTC+7)
+    const now = new Date();
+    const wibTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+    
+    const today = wibTime;
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
     

@@ -7,11 +7,13 @@ export const formatJamMenit = (date) => {
 };
 
 export const formatTanggalMasehi = (date) => {
+  // Pastikan pakai timezone Indonesia
   return date.toLocaleDateString('id-ID', { 
     weekday: 'long', 
     day: 'numeric', 
     month: 'long', 
-    year: 'numeric' 
+    year: 'numeric',
+    timeZone: 'Asia/Jakarta'
   });
 };
 
