@@ -12,7 +12,7 @@ import SholatOverlay from "@/components/SholatOverlay";
 
 export default function DisplayMasjid({ initialData }) {
   const [now, setNow] = useState(new Date());
-  const [status, setStatus] = useState("IDLE"); // IDLE -> ADZAN (15 detik) -> WAITING_IQAMAH
+  const [status, setStatus] = useState("IDLE"); 
   const [adzanStartTime, setAdzanStartTime] = useState(null);
   const [iqamahStartTime, setIqamahStartTime] = useState(null);
   const [audioReady, setAudioReady] = useState(false);
@@ -390,7 +390,7 @@ export default function DisplayMasjid({ initialData }) {
                     Tema Kajian
                   </p>
                   <p className="text-lg font-bold text-teal-700 font-serif">
-                    {todayKajian.waktu}
+                    {todayKajian.tema}
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-3 border-t-2 border-teal-200/50">
