@@ -3,7 +3,7 @@ export const weeklySchedule = {
     subuh: { utama: "Ust.Nashrullah", badal: "Syamsudin" },
     dzuhur: { utama: "Tedi Koswara", badal: "Azan Saleh" },
     ashar: { utama: "Tedi Koswara", badal: "Azan Saleh" },
-    maghrib: { utama: "Galuh", badal: "Tedi Koswara" },
+    maghrib: { utama: "Galuh Yogaswara", badal: "Tedi Koswara" },
     isya: { utama: "Tedi Koswara", badal: "Azan Saleh" }
   },
   Selasa: {
@@ -39,7 +39,7 @@ export const weeklySchedule = {
     dzuhur: { utama: "Kanda Putra", badal: "Azan Saleh" },
     ashar: { utama: "Kanda Putra", badal: "Azan Saleh" },
     maghrib: { utama: "Ust.Syakir Abdullah", badal: "Azan Saleh" },
-    isya: { utama: "Galuh", badal: "Tedi Koswara" }
+    isya: { utama: "Galuh Yogaswara", badal: "Tedi Koswara" }
   },
   Minggu: {
     subuh: { utama: "Ust.Syakir Abdullah", badal: "Syamsudin" },
