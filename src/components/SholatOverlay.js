@@ -23,7 +23,7 @@ export default function SholatOverlay({ currentPrayer, imamData, isJumat, onClos
         console.log(' Panggil onClose');
         onClose();
       }, 300);
-    }, 12000);
+    }, 15000);
 
     return () => {
       console.log('🧹 Cleanup timers');
